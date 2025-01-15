@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="logo.jpeg" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Agri Connect Dashboard</title>
+ 
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="logo-area">
+        <img src="logo.jpeg" alt="Logo" height="60">
+        <span>Agri Connect</span>
+      </div>
+      <div class="menu-item active">Dashboard</div>
+      <div class="menu-item">Crop Management</div>
+      <div class="menu-item">Livestock</div>
+      <div class="menu-item">Marketplace</div>
+      <div class="menu-item">Community</div>
+      <div class="menu-item">Weather Updates</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Header Section -->
+      <div class="header">
+        <div class="search-container">
+          <input type="text" class="search-bar" placeholder="Search farms, crops, or livestock...">
+          <div class="search-icon">
+            <img src="icons8-search-50.png" alt="Search" height="20">
+          </div>
+        </div>
+
+        <!-- Notifications and Profile Section -->
+        <div class="header-icons">
+          <div class="icon notifications">
+            <img src="icons8-notification-bell-48.png" alt="Notifications" height="25">
+            <span class="badge">3</span>
+          </div>
+          <div class="icon messages">
+            <img src="icons8-messages-50.png" alt="Messages" height="25">
+            <span class="badge">5</span>
+          </div>
+          <div class="icon messages">
+            <img src="icons8-person-24.png" alt="Profile" class="profile-img">
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Breadcrumb Navigation -->
+      <div class="breadcrumb">
+        <a href="#">Home</a> > <a href="#">Dashboard</a> > <span>Overview</span>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="cards-grid">
+        <div class="card">
+          <h3 class="card-title">Weather Conditions</h3>
+          <img src="pexels-brett-sayles-912364.jpg" alt="Weather" />
+          <div class="card-value">24°C</div>
+          <div>Humidity: 65%</div>
+          <div class="status positive">Optimal Growing Conditions</div>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Crop Status</h3>
+          <img src="pexels-alejandro-barron-21404-96715.jpg" alt="Crops" />
+          <div class="card-value">Healthy</div>
+          <div>Last Inspection: Today</div>
+          <div class="status positive">All Systems Normal</div>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Livestock Overview</h3>
+          <img src="pexels-pixabay-301600.jpg" alt="Livestock" />
+          <div class="card-value">342</div>
+          <div>Cattle: 240 | Sheep: 102</div>
+          <div class="status positive">All Healthy</div>
+        </div>
+      </div>
+
+      <!-- Main Chart -->
+      <div class="chart-area">
+        <h2>Crop Yield Forecast</h2>
+        <canvas id="cropYieldChart" class="chart-container"></canvas>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <strong>Quick Actions:</strong>
+        <span>Schedule Irrigation | Log Inspection | Market Prices</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('cropYieldChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Crop Yield (tons)',
+          data: [30, 50, 70, 40, 60, 80, 100, 90, 70, 60, 50, 40],
+          borderColor: '#22c55e',
+          backgroundColor: 'rgba(34, 197, 94, 0.2)',
+          borderWidth: 2,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: true },
+          tooltip: { enabled: true }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Months' } },
+          y: { title: { display: true, text: 'Yield (tons)' } }
+        }
+      }
+    });
+
+    document.querySelector('.notifications').addEventListener('click', () => {
+      alert('You have new notifications!');
+    });
+
+    document.querySelector('.messages').addEventListener('click', () => {
+      alert('You have new messages!');
+    });
+  </script>
+</body>
+</html>
